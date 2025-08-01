@@ -1,0 +1,7 @@
+# For testing purposes only. This is not how this is deployed.
+services:
+  http:
+    build: .
+    ports:
+      - 80:80
+      - 443:443
