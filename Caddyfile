@@ -1,3 +1,11 @@
+# 198.251.90.234 can be used to test local DNS servers via *.works.lan
+
+*.works.lan:80 {
+	respond "Congrats, your local DNS server resolved this address!" 200
+}
+
+# Otherwise, redirect to tls.cat for more information about this service
+
 (faketls_handler) {
 	handle /myip {
 		templates
