@@ -6,23 +6,11 @@
 
 # Otherwise, redirect to tls.cat for more information about this service
 
-(faketls_handler) {
-	handle /myip {
-		templates
-		header Content-Type text/plain
-		respond "{{.RemoteIP}}"
-	}
-
-	handle {
-		redir https://tls.cat
-	}
-}
-
 :80 {
-	import faketls_handler
+	redir https://tls.cat
 }
 
 :443 {
 	tls /etc/ssl/certs/faketls.pem /etc/ssl/private/faketls.key
-	import faketls_handler
+	redir https://tls.cat
 }
