@@ -4,6 +4,13 @@
 	respond "Congrats, your local DNS server resolved this address!" 200
 }
 
+# For direct connections to 198.251.90.234, explain the services more broadly
+
+198.251.90.234:80 {
+	header Content-Type text/html
+	respond `Hi, this is an anycast deployment running <a href="https://github.com/calamity-inc/faketls-dns">a DNS server</a> and <a href="https://github.com/calamity-inc/faketls-http">an HTTP server</a>.` 200
+}
+
 # Otherwise, redirect to tls.cat for more information about this service
 
 :80 {
