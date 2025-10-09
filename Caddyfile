@@ -11,6 +11,26 @@
 	respond `Hi, this is an anycast deployment running <a href="https://github.com/calamity-inc/faketls-dns">a DNS server</a> and <a href="https://github.com/calamity-inc/faketls-http">an HTTP server</a>.` 200
 }
 
+# my.iptls.com
+
+my.iptls.com:80 {
+	templates
+	respond `{{.RemoteIP | replace "." "-"}}.iptls.com`
+}
+
+# my.faketls.com
+
+my.faketls.com:80 {
+	templates
+	respond `{{.RemoteIP | replace "." "-"}}.faketls.com`
+}
+
+my.faketls.com:443 {
+	templates
+	respond `{{.RemoteIP | replace "." "-"}}.faketls.com`
+	tls /etc/ssl/certs/faketls.pem /etc/ssl/private/faketls.key
+}
+
 # Otherwise, redirect to tls.cat for more information about this service
 
 :80 {
